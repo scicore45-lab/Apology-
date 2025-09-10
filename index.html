@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #ffe6f0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .container {
+    text-align: center;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
+  }
+
+  #message {
+    min-height: 60px;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    color: #ff3d6b;
+    animation: float 4s linear forwards;
+    opacity: 0.8;
+    user-select: none;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-600px) scale(1.5); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div id="message">Click the button to read my apology 💌</div>
+  <button id="nextBtn">Next</button>
+</div>
+
+<script>
+  const messages = [
+    "Umuaah I love you Naw 💕",
+    "I’m sorry mene apka dil nhi dukhana tha 💔",
+    "Mujy trust ha ap pr naw i love you 💖",
+    "Mein complain krti hu kyunka mein pyar krti hu 🌹",
+    "I am sorry plz🥺",
+    "Mene apka dil nhi dukhana tha i know mene apka dil dukhaya i am sorry plz man jyen mein hamesha ulat pulat kr deti hu sab i am sorry naw i love you so much",
+    "❤️ Umuaah Naw, I love you! Sorry naw ❤️"
+  ];
+
+  let index = 0;
+  const messageEl = document.getElementById('message');
+  const nextBtn = document.getElementById('nextBtn');
+
+  nextBtn.addEventListener('click', () => {
+    if (index < messages.length) {
+      messageEl.textContent = messages[index];
+      index++;
+      if (index === messages.length) {
+        nextBtn.textContent = "❤️ Done ❤️";
+        nextBtn.disabled = true;
+      }
+    }
+  });
+
+  // Floating hearts
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '❤️';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+  }
+
+  setInterval(createHeart, 200);
+</script>
+
+</body>
+</html>
